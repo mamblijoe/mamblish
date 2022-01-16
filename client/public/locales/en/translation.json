@@ -1,0 +1,9 @@
+{
+  "forms": {
+    "sign-in": {
+      "title": "Sign In",
+      "forgot-password": "Forgot password",
+      "have-account": "Already have an account? Registration"
+    }
+  }
+}
