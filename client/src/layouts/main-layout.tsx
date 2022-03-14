@@ -5,12 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { useTranslation } from "react-i18next";
-import LanguageIcon from "@mui/icons-material/Language";
 import CustomDrawer from "@/components/Drawer";
-import cn from "./style.module.sass";
+import LangMenu from "@/components/LangMenu";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   children: ReactChildren | Element | ReactElement;
@@ -20,7 +17,6 @@ const MainLayout: FC<IProps> = ({ children }) => {
   const [openLangMenu, setOpenLangMenu] = useState<boolean>(false);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
-
   const handleLangMenu = () => {
     setOpenLangMenu((prev) => !prev);
   };
@@ -61,58 +57,27 @@ const MainLayout: FC<IProps> = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Home
+            {t("navigation.menu.home")}
           </Typography>
-          <div className={cn.langContainer}>
-            <Typography variant="h6" component="div" sx={{ mr: 2 }}>
-              {i18n.language}
-            </Typography>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleLangMenu}
-              color="inherit"
-            >
-              <LanguageIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={openLangMenu}
-              onClose={handleLangMenu}
-            >
-              <MenuItem onClick={() => changeLanguage("ru")}>
-                <span
-                  style={{
-                    fontWeight: i18n.language === "ru" ? "bold" : "initial",
-                  }}
-                >
-                  ru
-                </span>
-              </MenuItem>
-              <MenuItem onClick={() => changeLanguage("en")}>
-                <span
-                  style={{
-                    fontWeight: i18n.language === "en" ? "bold" : "initial",
-                  }}
-                >
-                  en
-                </span>
-              </MenuItem>
-            </Menu>
-          </div>
+          <LangMenu
+            handleLangMenu={handleLangMenu}
+            openLangMenu={openLangMenu}
+            changeLanguage={changeLanguage}
+          />
         </Toolbar>
       </AppBar>
+      <div
+        style={{
+          margin: "50px 10px",
+          padding: "50px",
+          borderRadius: 20,
+          border: "1px solid gray",
+          boxShadow: "0 0 100px #f3f3f3",
+          background: "#f6f6f6",
+        }}
+      >
+        {children}
+      </div>
     </Box>
   );
 };

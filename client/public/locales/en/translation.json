@@ -1,4 +1,9 @@
 {
+  "navigation": {
+    "menu": {
+      "home": "Home"
+    }
+  },
   "forms": {
     "sign-in": {
       "title": "Sign In",
