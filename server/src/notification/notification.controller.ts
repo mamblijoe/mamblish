@@ -1,18 +1,19 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { NotificationService } from './notification.service';
 
 @Controller('notification')
 export class NotificationController {
   constructor(private notificationService: NotificationService) {}
 
-  @Post('set')
-  public async setName(@Body() body: { name: string }) {
-    console.log('bodu', body.name);
-    await this.notificationService.setName(body.name);
+  @Post('set-name')
+  public async setName(@Body() body: { name: string; id: number }) {
+    await this.notificationService.setName(body);
+    return true;
   }
 
-  @Get()
-  public async test() {
-    return 'asdasd';
+  @Post('set-room')
+  public async setRoom(@Body() body: { name: string }) {
+    await this.notificationService.setRoom(body.name);
+    return true;
   }
 }

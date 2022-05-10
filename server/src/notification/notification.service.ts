@@ -6,19 +6,38 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 export class NotificationService {
   constructor(private readonly notificationGateway: NotificationGateway) {}
 
-  private name: string = null;
+  private users: { id: number; name: string }[] = [
+    {
+      id: 1,
+      name: 'Ivan',
+    },
+    {
+      id: 2,
+      name: 'Petr',
+    },
+  ];
+  private room: string = null;
 
   @Cron(CronExpression.EVERY_5_SECONDS)
   public async emitNotification(): Promise<void> {
-    const name = this.name || '';
     try {
-      this.notificationGateway.emitNotification(`Привет от сервера! ${name}`);
+      await this.notificationGateway.emitNotification(this.users);
     } catch (e) {
       console.log('error::::', e);
     }
   }
 
-  public async setName(name: string) {
-    this.name = name;
+  public async setName(body: { id: number; name: string }) {
+    const user = this.users.find(({ id }) => id === Number(body.id));
+    user.name = body.name;
+    console.log(`Пользователь с id ${body.id} изменил имя на ${body.name}`);
   }
+
+  public async setRoom(room: string) {
+    this.room = `room_${room}`;
+  }
+
+  getAll = async () => {
+    return [];
+  };
 }
