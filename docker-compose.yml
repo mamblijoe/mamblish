@@ -11,8 +11,8 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/app
-  backend:
-    container_name: backend
+  server:
+    container_name: server
     restart: unless-stopped
     build:
       context: ./server
@@ -22,3 +22,18 @@ services:
       - "5000:5000"
     volumes:
       - ./server:/app
+  db:
+    container_name: db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'pass'
+      MYSQL_ROOT_PASSWORD: 'pass'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./db:/var/lib/mysql
