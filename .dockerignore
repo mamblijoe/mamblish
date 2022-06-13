@@ -1,0 +1,5 @@
+.git
+.docker/volume/*
+*/**/node_modules/*
+front/node_modules/*
+back/node_modules/*

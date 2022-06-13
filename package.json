@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "cd server && npm run start:dev",
-    "client": "cd client && npm run dev",
+    "server": "cd apps/back && npm run start:dev",
+    "client": "cd apps/front && npm run dev",
     "start": "concurrently \"npm run client\" \"npm run server\""
   },
   "repository": {
