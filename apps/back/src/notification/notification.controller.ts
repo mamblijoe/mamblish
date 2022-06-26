@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {Body, Controller, Get, Post} from '@nestjs/common';
 import { NotificationService } from './notification.service';
 
 @Controller('notification')
@@ -15,5 +15,10 @@ export class NotificationController {
   public async setRoom(@Body() body: { name: string }) {
     await this.notificationService.setRoom(body.name);
     return true;
+  }
+
+  @Get('get')
+  public async getTest() {
+    return ['test']
   }
 }

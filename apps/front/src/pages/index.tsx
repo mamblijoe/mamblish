@@ -1,11 +1,17 @@
+import Head from 'next/head';
 import React from 'react';
 
-const Home = () => {
-    return (
-        <div>
-            Home1
-        </div>
-    );
-};
+const IndexPage = () => (
+    <div>
+        <Head>
+            <title>Next starter pack</title>
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-export default Home;
+        <div style={{ textAlign: 'center' }}>
+            <h1>111</h1>
+        </div>
+    </div>
+);
+
+export default IndexPage;

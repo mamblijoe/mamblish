@@ -12,14 +12,14 @@ services:
     volumes:
       - $PWD/apps/back:/app
     expose:
-      - 3000
+      - 5000
 
   front:
     image: node:14.18-alpine
     container_name: ${COMPOSE_PROJECT_NAME}_front
     restart: unless-stopped
     working_dir: /app
-    entrypoint: ["npm", "run", "proxy-local"]
+    entrypoint: ["npm", "run", "proxy"]
     env_file:
       - .env
     volumes:
@@ -29,7 +29,7 @@ services:
 
   nginx_front:
     image: nginx:alpine
-    container_name: ${COMPOSE_PROJECT_NAME}_nginx_back
+    container_name: ${COMPOSE_PROJECT_NAME}_nginx_front
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=mamblish.127.0.0.1.nip.io
@@ -40,7 +40,7 @@ services:
 
   nginx_back:
     image: nginx:alpine
-    container_name: ${COMPOSE_PROJECT_NAME}_nginx_front
+    container_name: ${COMPOSE_PROJECT_NAME}_nginx_back
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=back.mamblish.127.0.0.1.nip.io
@@ -61,19 +61,19 @@ services:
 #      timeout: 3s
 #      retries: 30
 
-#  db:
-#    image: mysql:8.0
-#    container_name: ${COMPOSE_PROJECT_NAME}_db
-#    restart: unless-stopped
-#    environment:
-#      - MYSQL_DATABASE=${DB_DATABASE}
-#      - MYSQL_ROOT_PASSWORD=root
-#      - MYSQL_USER=${DB_USERNAME}
-#      - MYSQL_PASSWORD=${DB_PASSWORD}
-#    volumes:
-#      - ${PWD}/.docker/volumes/db:/var/lib/mysql
-#    expose:
-#      - 3306
+  db:
+    image: mysql:8.0
+    container_name: ${COMPOSE_PROJECT_NAME}_db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ${PWD}/.docker/volumes/db:/var/lib/mysql
+    expose:
+      - 3306
 networks:
   default:
     external: true
