@@ -1,14 +1,10 @@
 import React from 'react';
 
-import BaseLayout from '@/components/BaseLayout';
-
 function IndexPage() {
     return (
-        <BaseLayout>
-            <div style={{ textAlign: 'center' }}>
-                <h1>11Next.js starter pack1</h1>
-            </div>
-        </BaseLayout>
+        <div style={{ textAlign: 'center' }}>
+            <h1 data-testid="main-header">Next.js starter pack</h1>
+        </div>
     );
 }
 
