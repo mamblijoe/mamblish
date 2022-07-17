@@ -17,9 +17,6 @@
     "api-codegen": "openapi --input ./swagger.json --output ./src/api --client axios --useOptions"
   },
   "dependencies": {
-    "@emotion/react": "11.9.3",
-    "@emotion/styled": "11.9.3",
-    "@mui/material": "5.9.0",
     "@sentry/nextjs": "7.1.1",
     "axios": "^0.27.2",
     "clsx": "^1.1.1",

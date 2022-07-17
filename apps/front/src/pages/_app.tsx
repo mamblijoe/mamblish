@@ -1,4 +1,5 @@
 import 'normalize.css';
+import '@/assets/styles/index.sass';
 
 import { AppProps } from 'next/app';
 import React from 'react';
