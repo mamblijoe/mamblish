@@ -13,6 +13,8 @@ services:
       - $PWD/apps/back:/app
     expose:
       - 5000
+    ports:
+      - "5000:5000"
 
   front:
     image: node:14.18-alpine
@@ -26,28 +28,30 @@ services:
       - $PWD/apps/front:/app
     expose:
       - 3000
+    ports:
+      - "3000:3000"
 
-  nginx_front:
-    image: nginx:alpine
-    container_name: ${COMPOSE_PROJECT_NAME}_nginx_front
-    restart: unless-stopped
-    environment:
-      - VIRTUAL_HOST=mamblish.127.0.0.1.nip.io
-    volumes:
-      - ./nginx/default_local_front.conf:/etc/nginx/conf.d/default.conf
-    expose:
-      - 80
-
-  nginx_back:
-    image: nginx:alpine
-    container_name: ${COMPOSE_PROJECT_NAME}_nginx_back
-    restart: unless-stopped
-    environment:
-      - VIRTUAL_HOST=back.mamblish.127.0.0.1.nip.io
-    volumes:
-      - ./nginx/default_local_back.conf:/etc/nginx/conf.d/default.conf
-    expose:
-      - 80
+#  nginx_front:
+#    image: nginx:alpine
+#    container_name: ${COMPOSE_PROJECT_NAME}_nginx_front
+#    restart: unless-stopped
+#    environment:
+#      - VIRTUAL_HOST=mamblish.127.0.0.1.nip.io
+#    volumes:
+#      - ./nginx/default_local_front.conf:/etc/nginx/conf.d/default.conf
+#    expose:
+#      - 80
+#
+#  nginx_back:
+#    image: nginx:alpine
+#    container_name: ${COMPOSE_PROJECT_NAME}_nginx_back
+#    restart: unless-stopped
+#    environment:
+#      - VIRTUAL_HOST=back.mamblish.127.0.0.1.nip.io
+#    volumes:
+#      - ./nginx/default_local_back.conf:/etc/nginx/conf.d/default.conf
+#    expose:
+#      - 80
 
 #  redis:
 #    image: redis
