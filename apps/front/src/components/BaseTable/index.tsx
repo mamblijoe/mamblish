@@ -22,14 +22,22 @@ const rows = [
 export default function BaseTable() {
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }}>Dessert (100g serving)</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="right">
+                            Calories
+                        </TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="right">
+                            Fat&nbsp;(g)
+                        </TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="right">
+                            Carbs&nbsp;(g)
+                        </TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="right">
+                            Protein&nbsp;(g)
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

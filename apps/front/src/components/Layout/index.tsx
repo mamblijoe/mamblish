@@ -8,8 +8,7 @@ interface IProps {
 }
 const Layout: FC<IProps> = ({ children }) => (
     <Container maxWidth="xl">
-        <h1 data-testid="main-header">Next.js starter pack</h1>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box mt={3}>
             <Grid container spacing={2}>
                 <Grid item lg={2}>
                     <Menu />
