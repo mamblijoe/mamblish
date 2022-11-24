@@ -21,7 +21,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_front
     restart: unless-stopped
     working_dir: /app
-    entrypoint: ["npm", "run", "proxy:dev"]
+    entrypoint: ["npm", "run", "dev"]
     env_file:
       - .env
     volumes:

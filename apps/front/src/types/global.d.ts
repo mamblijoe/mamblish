@@ -5,7 +5,10 @@ declare module '*.module.sass' {
 
 declare module '*.svg';
 
-interface Window {
-    dataLayer: Record<string, any>[];
-    ga: (...args: any[]) => void;
-}
+type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
+
+type ExpandRecursively<T> = T extends object
+    ? T extends infer O
+        ? { [K in keyof O]: ExpandRecursively<O[K]> }
+        : never
+    : T;

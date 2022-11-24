@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,6 +17,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": false,
     "removeComments": true,
     "jsx": "preserve",
     "baseUrl": ".",
@@ -25,7 +27,7 @@
         "./src/*"
       ],
       "@sassConfig": [
-        "src/assets/styles/config.sass"
+        "src/styles/config.sass"
       ]
     },
     "typeRoots": [
@@ -39,6 +41,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "src/api/**/*.ts"
+  ],
 }

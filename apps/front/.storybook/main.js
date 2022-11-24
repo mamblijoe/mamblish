@@ -1,55 +1,25 @@
-const path = require('path');
-
 module.exports = {
-    stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+    stories: ['../src/**/*.stories.@(ts|tsx)'],
+    addons: [
+        '@storybook/addon-links',
+        '@storybook/addon-essentials',
+        '@storybook/addon-actions',
+        '@storybook/addon-interactions',
+        'storybook-addon-next',
+        'storybook-addon-next-router',
+    ],
     typescript: {
         check: false,
         checkOptions: {},
-        reactDocgen: 'react-docgen',
+        reactDocgen: 'react-docgen-typescript',
         reactDocgenTypescriptOptions: {
+            shouldRemoveUndefinedFromOptional: true,
             shouldExtractLiteralValuesFromEnum: true,
             propFilter: prop => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
         },
     },
-    webpackFinal: async config => {
-        config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
-        config.resolve.alias['@sassConfig'] = path.resolve(
-            __dirname,
-            '../src/assets/styles/base/config.sass'
-        );
-        config.module.rules.push({
-            test: /\.mjs$/,
-            include: /node_modules/,
-            type: 'javascript/auto',
-        });
-        config.resolve.extensions.push('.mjs');
-        config.module.rules.push({
-            test: /\.module\.sass$/,
-            loader: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true,
-                        sourceMap: true,
-                    },
-                },
-                {
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: true,
-                        sassOptions: {
-                            indentType: 'tab',
-                            includePaths: [
-                                path.join(__dirname, '..', 'src/assets/styles/index.sass'),
-                            ],
-                        },
-                    },
-                },
-            ],
-        });
-
-        return config;
+    framework: '@storybook/react',
+    core: {
+        builder: 'webpack5',
     },
 };
